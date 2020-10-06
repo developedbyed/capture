@@ -1,9 +1,15 @@
 import React from "react";
+//Import Components
+import Nav from "./components/Nav";
+import GlobalStyle from "./components/GlobalStyle";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
     <div className="App">
-      <h1>hello</h1>
+      <GlobalStyle />
+      <Nav />
+      <AboutUs />
     </div>
   );
 }
