@@ -6,15 +6,18 @@ import GlobalStyle from "./components/GlobalStyle";
 import AboutUs from "./pages/AboutUs";
 import OurWork from "./pages/OurWork";
 //Router
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
+  const location = useLocation();
+
   return (
     <div className="App">
-      <Router>
-        <GlobalStyle />
-        <Nav />
-        <Switch>
+      <GlobalStyle />
+      <Nav />
+      <AnimatePresence exitBeforeEnter>
+        <Switch location={location} key={location.key}>
           <Route path="/" exact>
             <AboutUs />
           </Route>
@@ -22,7 +25,7 @@ function App() {
             <OurWork />
           </Route>
         </Switch>
-      </Router>
+      </AnimatePresence>
     </div>
   );
 }

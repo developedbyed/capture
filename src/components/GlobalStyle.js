@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     }
     body{
         font-family: 'Inter', sans-serif;
+        background: #1B1B1B;
     }
     button{
         font-family: 'Inter', sans-serif;

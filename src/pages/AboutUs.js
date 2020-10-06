@@ -5,50 +5,40 @@ import Cards from "../components/Cards";
 import homeImg1 from "../img/home1.png";
 import homeImg2 from "../img/home2.png";
 import { motion } from "framer-motion";
-
+import { container, titleAnim, fade, photoAnim } from "../util";
 const AboutUs = () => {
-  const textContainer = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        duration: 1,
-      },
-    },
-  };
-  const textAnim = {
-    hidden: { y: 100 },
-    show: {
-      y: 0,
-      transition: { type: "tween", ease: "circOut", duration: 0.75 },
-    },
-  };
   return (
     <>
-      <About>
+      <About variants={container} initial="hidden" animate="show" exit="exit">
         <Description>
-          <motion.div variants={textContainer} initial="hidden" animate="show">
+          <div>
             <Hide>
-              <motion.h2 variants={textAnim}>We work to make</motion.h2>
+              <motion.h2 variants={titleAnim}>We work to make</motion.h2>
             </Hide>
             <Hide>
-              <motion.h2 variants={textAnim}>
+              <motion.h2 variants={titleAnim}>
                 your <span>dreams</span> come
               </motion.h2>
             </Hide>
             <Hide>
-              <motion.h2 variants={textAnim}> true.</motion.h2>
+              <motion.h2 variants={titleAnim}> true.</motion.h2>
             </Hide>
-          </motion.div>
-          <p>
+          </div>
+
+          <motion.p variants={fade}>
             Contact us for any photography or videography ideas that you have.
             We have professionals with amazing skills to help you achieve it.
-          </p>
-          <button>Contact Us</button>
+          </motion.p>
+          <motion.button variants={fade}>Contact Us</motion.button>
         </Description>
         <Image>
-          <img src={homeImg1} alt="camera holding" />
+          <motion.img
+            initial="hidden"
+            animate="show"
+            variants={photoAnim}
+            src={homeImg1}
+            alt="camera holding"
+          />
         </Image>
         <Wave />
       </About>
@@ -88,7 +78,7 @@ const AboutUs = () => {
   );
 };
 
-const About = styled.section`
+const About = styled(motion.div)`
   background: #1b1b1b;
   min-height: 90vh;
   color: white;
@@ -128,6 +118,7 @@ const Description = styled.div`
 const Image = styled.div`
   z-index: 2;
   flex: 1;
+  overflow: hidden;
   img {
     width: 100%;
     height: 80vh;
