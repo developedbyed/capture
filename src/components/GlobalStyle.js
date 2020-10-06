@@ -26,6 +26,9 @@ const GlobalStyle = createGlobalStyle`
         font-size: 1.6rem;
         line-height: 150%;
     }
+    h4{
+        font-size: 2.5rem;
+    }
 `;
 
 export default GlobalStyle;

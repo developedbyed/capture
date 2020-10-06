@@ -33,10 +33,11 @@ const StyledNav = styled.nav`
   margin: auto;
   justify-content: space-between;
   align-items: center;
-  background: #090909;
+  background: #282828;
   padding: 1rem 10rem;
   ul {
     display: flex;
+    list-style: none;
   }
   li {
     padding-left: 10rem;

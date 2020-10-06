@@ -35,6 +35,27 @@ const AboutUs = () => {
           <img src={homeImg2} alt="camera" />
         </Image>
       </Services>
+      <Faq>
+        <h2>
+          Any Questions?<span>FAQ</span>
+        </h2>
+        <div className="question">
+          <h4>How do I start?</h4>
+          <div className="faq-line"></div>
+        </div>
+        <div className="question">
+          <h4>What Products do you offer?</h4>
+          <div className="faq-line"></div>
+        </div>
+        <div className="question">
+          <h4>Diferrent Payment Methods</h4>
+          <div className="faq-line"></div>
+        </div>
+        <div className="question">
+          <h4>Daily Schedule</h4>
+          <div className="faq-line"></div>
+        </div>
+      </Faq>
     </>
   );
 };
@@ -46,7 +67,7 @@ const About = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 10rem;
+  padding: 5rem 10rem;
 `;
 const Description = styled.div`
   color: white;
@@ -58,6 +79,7 @@ const Description = styled.div`
   }
   p {
     padding: 3rem 0rem;
+    color: #cccccc;
   }
   span {
     font-weight: bold;
@@ -68,6 +90,11 @@ const Description = styled.div`
     border: 3px solid #23d997;
     background: transparent;
     color: white;
+    transition: all 0.5s ease;
+    &:hover {
+      background: #23d997;
+      color: white;
+    }
   }
 `;
 const Image = styled.div`
@@ -87,6 +114,31 @@ const Services = styled(About)`
   p {
     width: 70%;
     padding: 2rem 0rem 4rem 0rem;
+  }
+`;
+
+const Faq = styled.section`
+  min-height: 100vh;
+  padding: 5rem 10rem;
+  background: #1b1b1b;
+  color: white;
+  span {
+    display: block;
+    color: #23d997;
+    font-weight: bold;
+  }
+  h2 {
+    font-weight: lighter;
+    padding-bottom: 2rem;
+  }
+  .question {
+    padding: 3rem 0rem;
+  }
+  .faq-line {
+    background: #cccccc;
+    height: 0.2rem;
+    margin: 1rem 0rem;
+    width: 100%;
   }
 `;
 
