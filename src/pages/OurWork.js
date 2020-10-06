@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Movie from "../components/Movie";
+
 //Import Images
 import athlete from "../img/athlete-small.png";
 import goodtimes from "../img/goodtimes-small.png";

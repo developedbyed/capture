@@ -4,15 +4,43 @@ import Wave from "../components/Wave";
 import Cards from "../components/Cards";
 import homeImg1 from "../img/home1.png";
 import homeImg2 from "../img/home2.png";
+import { motion } from "framer-motion";
 
 const AboutUs = () => {
+  const textContainer = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        duration: 1,
+      },
+    },
+  };
+  const textAnim = {
+    hidden: { y: 100 },
+    show: {
+      y: 0,
+      transition: { type: "tween", ease: "circOut", duration: 0.75 },
+    },
+  };
   return (
     <>
       <About>
         <Description>
-          <h2>
-            We work to make your <span>dreams</span> come true.
-          </h2>
+          <motion.div variants={textContainer} initial="hidden" animate="show">
+            <Hide>
+              <motion.h2 variants={textAnim}>We work to make</motion.h2>
+            </Hide>
+            <Hide>
+              <motion.h2 variants={textAnim}>
+                your <span>dreams</span> come
+              </motion.h2>
+            </Hide>
+            <Hide>
+              <motion.h2 variants={textAnim}> true.</motion.h2>
+            </Hide>
+          </motion.div>
           <p>
             Contact us for any photography or videography ideas that you have.
             We have professionals with amazing skills to help you achieve it.
@@ -140,6 +168,9 @@ const Faq = styled.section`
     margin: 1rem 0rem;
     width: 100%;
   }
+`;
+const Hide = styled.div`
+  overflow: hidden;
 `;
 
 export default AboutUs;
