@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Wave from "../components/Wave";
 import Cards from "../components/Cards";
 import homeImg1 from "../img/home1.png";
 import homeImg2 from "../img/home2.png";
-import { motion } from "framer-motion";
-import { container, titleAnim, fade, photoAnim } from "../util";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { container, titleAnim, fade, photoAnim, reveal } from "../util";
 const AboutUs = () => {
+  const serviceControls = useAnimation();
+  const faqControls = useAnimation();
+  const [description, descView] = useInView({ threshold: 0.75 });
+  const [faq, faqView] = useInView({ threshold: 0.75 });
+  //Use Effect
+  useEffect(() => {
+    if (descView) {
+      serviceControls.start("show");
+    }
+    if (faqView) {
+      faqControls.start("show");
+    }
+  }, [serviceControls, faqControls, descView, faqView]);
   return (
     <>
       <About variants={container} initial="hidden" animate="show" exit="exit">
@@ -42,7 +56,12 @@ const AboutUs = () => {
         </Image>
         <Wave />
       </About>
-      <Services>
+      <Services
+        ref={description}
+        animate={serviceControls}
+        initial="hidden"
+        variants={reveal}
+      >
         <Description>
           <h2>
             High <span>quality</span> services.
@@ -53,7 +72,7 @@ const AboutUs = () => {
           <img src={homeImg2} alt="camera" />
         </Image>
       </Services>
-      <Faq>
+      <Faq ref={faq} animate={faqControls} initial="hidden" variants={reveal}>
         <h2>
           Any Questions?<span>FAQ</span>
         </h2>
@@ -136,11 +155,12 @@ const Services = styled(About)`
   }
 `;
 
-const Faq = styled.section`
+const Faq = styled(motion.section)`
   min-height: 100vh;
   padding: 5rem 10rem;
   background: #1b1b1b;
   color: white;
+
   span {
     display: block;
     color: #23d997;
