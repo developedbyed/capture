@@ -22,6 +22,7 @@ export const containerWork = {
       staggerChildren: 0.2,
       duration: 0.5,
       ease: "easeOut",
+
       when: "beforeChildren",
     },
   },
