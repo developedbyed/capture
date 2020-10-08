@@ -1,10 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import { reveal } from "../util";
+import Question from "./Question";
 
 const FaqSection = () => {
+  //State
+  const [toggleFaq, setToggleFaq] = useState([
+    {
+      title: "How Do I Start?",
+      description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum voluptatem dolorum obcaecati aperiam impedit, architecto reprehenderit aliquid tempore excepturi consequatur esse quis magni odit? Nesciunt animi veritatis distinctio rerum quo.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum expedita facere quasi aliquam harum saepe fuga suscipit enim quisquam alias?`,
+      active: false,
+    },
+    {
+      title: "What Products do you offer?",
+      description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum voluptatem dolorum obcaecati aperiam impedit, architecto reprehenderit aliquid tempore excepturi consequatur esse quis magni odit? Nesciunt animi veritatis distinctio rerum quo.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum expedita facere quasi aliquam harum saepe fuga suscipit enim quisquam alias?`,
+      active: false,
+    },
+    {
+      title: "Diferrent Payment Methods",
+      description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum voluptatem dolorum obcaecati aperiam impedit, architecto reprehenderit aliquid tempore excepturi consequatur esse quis magni odit? Nesciunt animi veritatis distinctio rerum quo.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum expedita facere quasi aliquam harum saepe fuga suscipit enim quisquam alias?`,
+      active: false,
+    },
+    {
+      title: "Daily Schedule",
+      description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum voluptatem dolorum obcaecati aperiam impedit, architecto reprehenderit aliquid tempore excepturi consequatur esse quis magni odit? Nesciunt animi veritatis distinctio rerum quo.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum expedita facere quasi aliquam harum saepe fuga suscipit enim quisquam alias?`,
+      active: false,
+    },
+  ]);
+  //Scroll Animation
   const faqControls = useAnimation();
   const [faq, faqView] = useInView({ threshold: 0.75 });
   useEffect(() => {
@@ -13,39 +42,24 @@ const FaqSection = () => {
     }
   }, [faqControls, faqView]);
   return (
-    <Faq ref={faq} animate={faqControls} initial="hidden" variants={reveal}>
+    <Faq
+      transition={{ duration: 0.75 }}
+      ref={faq}
+      animate={faqControls}
+      initial="hidden"
+      variants={reveal}
+    >
       <h2>
         Any Questions?<span>FAQ</span>
       </h2>
-      <div className="question">
-        <h4>How do I start?</h4>
-        <div className="answer">
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum
-            voluptatem dolorum obcaecati aperiam impedit, architecto
-            reprehenderit aliquid tempore excepturi consequatur esse quis magni
-            odit? Nesciunt animi veritatis distinctio rerum quo.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-            expedita facere quasi aliquam harum saepe fuga suscipit enim
-            quisquam alias?
-          </p>
-        </div>
-        <div className="faq-line"></div>
-      </div>
-      <div className="question">
-        <h4>What Products do you offer?</h4>
-        <div className="faq-line"></div>
-      </div>
-      <div className="question">
-        <h4>Diferrent Payment Methods</h4>
-        <div className="faq-line"></div>
-      </div>
-      <div className="question">
-        <h4>Daily Schedule</h4>
-        <div className="faq-line"></div>
-      </div>
+      {toggleFaq.map((faq) => (
+        <Question
+          toggleFaq={toggleFaq}
+          key={faq.title}
+          faq={faq}
+          setToggleFaq={setToggleFaq}
+        />
+      ))}
     </Faq>
   );
 };
@@ -67,6 +81,7 @@ const Faq = styled(motion.section)`
   }
   .question {
     padding: 3rem 0rem;
+    cursor: pointer;
   }
   .faq-line {
     background: #cccccc;
